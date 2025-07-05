@@ -1,5 +1,6 @@
 {
   "expo": {
+    "assetBundlePatterns": "**/*",
     "name": "food-delivery",
     "slug": "food-delivery",
     "version": "1.0.0",
