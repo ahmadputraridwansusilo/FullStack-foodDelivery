@@ -4,6 +4,8 @@ import { Alert, Text, View } from 'react-native';
 
 import CustomButton from '@/components/CustomButton';
 import CustomInput from '@/components/CustomInput';
+import { signIn } from '@/lib/appwrite';
+import * as Sentry from "@sentry/react-native";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -12,6 +14,8 @@ const SignIn = () => {
   const router = useRouter();
 
   const submit = async () => {
+    const {email, password} = form;
+
     if (!form.email || !form.password) {
       Alert.alert('Error', 'Please enter a valid email and password');
       return;
@@ -19,11 +23,13 @@ const SignIn = () => {
 
     setIsSubmitting(true);
     try {
+
+      await signIn ({ email, password});
       // Simulasi proses sign-in
-      Alert.alert('Success', 'User signed in successfully.');
       router.replace('/');
     } catch (error: any) {
       Alert.alert('Error', error.message || 'Something went wrong');
+      Sentry.captureEvent(error)
     } finally {
       setIsSubmitting(false);
     }

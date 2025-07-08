@@ -1,9 +1,10 @@
-import CustomButton from '@/components/CustomButton'
-import CustomInput from '@/components/CustomInput'
-import { Link, router } from 'expo-router'
+import CustomButton from '@/components/CustomButton';
+import CustomInput from '@/components/CustomInput';
+import { createUser } from '@/lib/appwrite';
+import { Link, router } from 'expo-router';
 
-import React, { useState } from 'react'
-import { Alert, Text, View } from 'react-native'
+import { useState } from 'react';
+import { Alert, Text, View } from 'react-native';
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,16 +12,23 @@ const SignUp = () => {
 
  
 
+
   const submit = async () => {
-    if (!form.email || !form.password) {
+
+    const {name, email, password } = form;
+
+    if (!form.name  || !form.email || !form.password) {
       Alert.alert('Error', 'Please enter a valid email and password');
       return;
     }
-
     setIsSubmitting(true);
+
     try {
-      // Simulasi proses sign-in
-      Alert.alert('Success', 'User signed in successfully.');
+      await createUser({
+        email,
+        password,
+        name,
+      }) ;
       router.replace('/');
     } catch (error: any) {
       Alert.alert('Error', error.message || 'Something went wrong');
