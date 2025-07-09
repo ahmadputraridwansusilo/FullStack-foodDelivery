@@ -6,7 +6,7 @@ import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 
-const isAuthenticated = false;
+const isAuthenticated = true;
 const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     <View className="tab-icon">
         <Image source={icon} className="size-7" resizeMode="contain" tintColor={focused ? '#FE8C00' : '#5D5F6D'} />

@@ -3,7 +3,7 @@ import { images, offers } from "@/constant";
 import useAuthStore from "@/store/auth.store";
 import cn from "clsx";
 import { Fragment } from "react";
-import { FlatList, Image, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
@@ -11,7 +11,6 @@ export default function App() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView>
       <FlatList 
         data={offers}
         renderItem={({ item, index }) => {
@@ -70,7 +69,6 @@ export default function App() {
         )}
         />
    
-        </ScrollView>
     </SafeAreaView>
   );
 }
